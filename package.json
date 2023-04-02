@@ -8,5 +8,6 @@
   "private": false,
   "scripts": {
     "start": "node server/index.js"
-  }
+  },
+  "keywords": []
 }

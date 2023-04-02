@@ -27,7 +27,10 @@ class Car {
     this.manufacture = manufacture;
     this.model = model;
     this.image = image;
-    this.rentPerDay = rentPerDay;
+    this.rentPerDay = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(rentPerDay)
     this.capacity = capacity;
     this.description = description;
     this.transmission = transmission;
@@ -40,13 +43,29 @@ class Car {
   }
 
   render() {
+
     return `
-      <p>id: <b>${this.id}</b></p>
-      <p>plate: <b>${this.plate}</b></p>
-      <p>manufacture: <b>${this.manufacture}</b></p>
-      <p>model: <b>${this.model}</b></p>
-      <p>available at: <b>${this.availableAt}</b></p>
-      <img src="${this.image}" alt="${this.manufacture}" width="64px">
-    `;
+    <div class="card my-2 mx-2">
+    <img src="${this.image}" class="img-fluid" alt="${this.manufacture}">
+    <div class="card-body">
+      <p class="card-text">${this.manufacture}/${this.model}</p>
+      <p class="card-rent">${this.rentPerDay} /hari</p>
+      <p class="car-desc">${this.description}</p>
+      <div class="d-flex my-2">
+        <i class="fa-solid fa-user-group"></i>
+        <p class="mx-2 my-0">${this.capacity} orang</p>
+      </div>
+      <div class="d-flex my-2">
+        <i class="fa-solid fa-gear"></i>
+        <p class="mx-2 my-0">${this.transmission}</p>
+      </div>
+      <div class="d-flex my-2">
+        <i class="fa-solid fa-calendar"></i>
+        <p class="mx-2 my-0">Tahun ${this.year}</p>
+      </div>
+      <button class="btn btn-success w-90 mt-2">Pilih Mobil</button>
+    </div>
+  </div>
+`
   }
 }
